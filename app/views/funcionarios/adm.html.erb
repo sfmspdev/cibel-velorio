@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="inicio">
+      <h1 class="help">O que deseja fazer?</h1>
+      
+      <%= link_to new_funcionario_path, id: 'novo_funcionario', class: "link-div" do %>      
+        <div class="botao_inicial">
+          <i class="fa fa-file-o"></i><br>
+          Cadastrar Atendente     
+        </div>
+      <% end %>
+  
+      <%= link_to index_interditar_path, class: "link-div" do %>
+        <div class="botao_inicial">
+            <i class="fa fa-pie-chart"></i><br>
+            Administrar Velórios
+        </div>
+      <% end %>
+      
+      <%= link_to justificativas_path, class: "link-div" do %>
+        <div class="botao_inicial">
+            <i class="fa fa-folder-open-o"></i><br>
+            <br>  <!-- coloquei isso pq a palavra relatorio ocupa so uma linha-->
+            Relatório
+        </div>
+      <% end %>
+      
+    </div>
+  </div>
+</div>
+
+<div class="cancelar-reserva" style="margin-top: 10px; margin-right: 2.5%;">
+  <%= link_to "Voltar", root_path, class: 'cibelbutton' %>
+</div>

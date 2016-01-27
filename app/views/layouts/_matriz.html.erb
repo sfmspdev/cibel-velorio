@@ -1,0 +1,42 @@
+<div class="conteudo-painel testando">		
+	<table border="0" class="table table-condensed">			
+		<% object.each_with_index do |row, row_index| %>
+			<% if row_index == 0 %>
+			<tr>
+				<td style="background: none; border: 0px;"></td>
+				<td class="celula_hoje" colspan='<%= Time.now.in_time_zone.end_of_day.hour.to_i - Time.now.in_time_zone.hour.to_i + 1 %>'><%= Time.now.strftime('%d/%m/%Y') %></td>
+				<td class="celula_amanha" colspan='<%= Time.now.in_time_zone.end_of_day.hour.to_i + Time.now.in_time_zone.hour.to_i %>'><%= Time.now.tomorrow.strftime('%d/%m/%Y') %></td>
+			</tr>  		
+			<% end %>
+  		<tr>
+				<% row.each_with_index do |e, col_index| %>
+					<% if row_index > 0 && col_index == 0 %>
+						<td style="background: rgba(46, 139, 87,0.4);">
+							<div style="width: 50px;" class="" id="<%= e %>">Sala <%= e %></div>
+						</td>
+					<% elsif row_index == 0 && col_index > 0 %>
+						<td style="background: rgba(46, 139, 87,0.4);">
+							<div class="horarios" data-horario="<%= e %>"><%= e.hour %>:00</div>
+						</td>	
+					<% elsif row_index == 0 || col_index == 0 %>
+						<td style="background: rgba(46, 139, 87,0.4);">
+							<div class="" id="<%= e %>"><%= e %></div>
+						</td>
+					<% elsif e == 'p' %>
+						<td class='td_ocupado'>
+							<div class="agenda_ocupado" data-horario="<%= col_index %>" data-sala="<%= @velorio.salas[row_index -1].id %>"></div>
+						</td>
+					<% elsif e == 'o' %>
+						<td class='td_interditado'>
+							<div class="agenda_interditado" data-horario="<%= col_index %>" data-sala="<%= @velorio.salas[row_index -1].id %>"></div>
+						</td>
+					<% else %>
+						<td class='td_livre'>
+							<div class="agenda_livre" data-horario="<%= e %>" data-sala="<%= @velorio.salas[row_index -1].id %>"></div>
+						</td>
+					<% end %>	
+				<% end %>	
+			</tr>
+		<% end %>
+	</table>				
+</div>

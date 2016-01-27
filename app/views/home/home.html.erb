@@ -1,0 +1,5 @@
+<% if current_funcionario.class == Atendente %>
+  <%= render 'home_ag' %>
+<% elsif current_funcionario.class == Velorista %>
+  <%= render 'home_vel' %>
+<% end %>
